@@ -1,0 +1,58 @@
+<div class="flex flex-col items-center w-screen gap-4">
+  <div class="bg-black text-white text-center text-3xl w-screen">
+    Ronda {{ currentRound }} de {{ numRounds }}
+  </div>
+  <div
+    class="mt-8 bg-slate-100 border-black h-72 w-72 md:h-96 md:w-96 box-border border-2 flex justify-center"
+  >
+    <img class="object-contain" src="{{ getImage() }}" alt="" />
+  </div>
+  <div class="bg-black text-white px-2 py-1 font-bold text-lg">
+    ¿Cuando se tomó esta foto?
+  </div>
+
+  <input
+    [(ngModel)]="selectedDate"
+    type="date"
+    style="color-scheme: dark"
+    class="text-white border-2 px-4 py-1 rounded-lg border-black"
+    [disabled]="showPoints"
+  />
+  <button
+    class="border-2 px-16 py-3 border-black rounded disabled:opacity-30"
+    (click)="check()"
+    [disabled]="showPoints"
+  >
+    Comprobar
+  </button>
+  <div *ngIf="showPoints" class="flex flex-col items-center gap-4 mb-10">
+    <div
+      class="uppercase bg-black text-white text-6xl text-center py-6 w-screen"
+    >
+      points
+    </div>
+    <div class="text-2xl">{{ points }}</div>
+    <div class="bg-black text-white text-center px-2">
+      <div class="text-lg">La foto se tomó el</div>
+      <div class="text-xl">{{ currentImage?.date }}</div>
+    </div>
+    <div class="bg-black text-white text-2xl w-fit px-1 py-2">
+      Total: {{ totalPoints }}
+    </div>
+    <button
+      *ngIf="currentRound < numRounds; else endGame"
+      class="border-2 px-16 py-3 border-black rounded"
+      (click)="nextRound()"
+    >
+      Siguiente ronda
+    </button>
+    <ng-template #endGame>
+      <button
+        class="border-2 px-16 py-3 border-black rounded"
+        (click)="showResults()"
+      >
+        Ver resultados
+      </button>
+    </ng-template>
+  </div>
+</div>

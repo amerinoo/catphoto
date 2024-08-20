@@ -1,10 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { DailyComponent } from './components/modes/daily/daily.component';
+import { PartyComponent } from './components/modes/party/party.component';
+import { SoloComponent } from './components/modes/solo/solo.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'daily', component: DailyComponent },
+  { path: 'solo', component: SoloComponent },
+  { path: 'party', component: PartyComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

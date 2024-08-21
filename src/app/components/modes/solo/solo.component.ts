@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Photo } from 'src/app/models/photo';
 import { ImagesService } from 'src/app/services/photos.service';
+import { ResultsService } from 'src/app/services/results.service';
 
 @Component({
   selector: 'app-solo',
@@ -10,24 +12,23 @@ import { ImagesService } from 'src/app/services/photos.service';
 export class SoloComponent implements OnInit {
   currentRound = 0;
   numRounds: number = 5;
-  currentImage?: Photo;
+  currentImage!: Photo;
   selectedDate: string | undefined;
   images: Photo[] = [];
   showPoints = false;
   points = 0;
   totalPoints = 0;
 
-  constructor(private imagesService: ImagesService) {}
+  constructor(
+    private imagesService: ImagesService,
+    private resultsService: ResultsService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.images = this.imagesService.getPhotos(this.numRounds);
-    console.log(this.images);
-
+    this.resultsService.clear();
     this.nextRound();
-  }
-
-  getImage() {
-    return `/assets/${this.currentImage?.name}`;
   }
 
   check() {
@@ -39,6 +40,7 @@ export class SoloComponent implements OnInit {
       console.log(this.currentImage.date, this.selectedDate, days);
       this.points = this.calculateScore(days);
       this.totalPoints += this.points;
+      this.resultsService.add(this.points, this.currentImage);
       this.showPoints = true;
     }
   }
@@ -61,6 +63,7 @@ export class SoloComponent implements OnInit {
   }
 
   showResults() {
-    console.log('Showing results');
+    this.resultsService.setTotalScore(this.totalPoints);
+    this.router.navigate(['/results']);
   }
 }

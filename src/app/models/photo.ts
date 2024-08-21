@@ -1,9 +1,9 @@
 export class Photo {
-  name: string;
+  image: string;
   date: string;
 
-  constructor(name: string, date: string) {
-    this.name = name;
+  constructor(image: string, date: string) {
+    this.image = `/assets/${image}`;
     this.date = date;
   }
 }

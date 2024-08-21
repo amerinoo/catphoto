@@ -5,7 +5,7 @@
   <div
     class="mt-8 bg-slate-100 border-black h-72 w-72 md:h-96 md:w-96 box-border border-2 flex justify-center"
   >
-    <img class="object-contain" src="{{ getImage() }}" alt="" />
+    <img class="object-contain" src="{{ currentImage.image }}" alt="" />
   </div>
   <div class="bg-black text-white px-2 py-1 font-bold text-lg">
     ¿Cuando se tomó esta foto?
@@ -34,7 +34,7 @@
     <div class="text-2xl">{{ points }}</div>
     <div class="bg-black text-white text-center px-2">
       <div class="text-lg">La foto se tomó el</div>
-      <div class="text-xl">{{ currentImage?.date }}</div>
+      <div class="text-xl">{{ currentImage.date }}</div>
     </div>
     <div class="bg-black text-white text-2xl w-fit px-1 py-2">
       Total: {{ totalPoints }}

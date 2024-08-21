@@ -11,6 +11,7 @@ import { SoloComponent } from './components/modes/solo/solo.component';
 import { FormsModule } from '@angular/forms';
 import { GameReviewComponent } from './components/game-review/game-review.component';
 import { RoundComponent } from './components/game-review/round/round.component';
+import { ResultsComponent } from './components/results/results.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RoundComponent } from './components/game-review/round/round.component';
     DailyComponent,
     GameReviewComponent,
     RoundComponent,
+    ResultsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

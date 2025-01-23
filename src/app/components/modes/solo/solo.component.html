@@ -34,7 +34,7 @@
     <div class="text-2xl">{{ points }}</div>
     <div class="bg-black text-white text-center px-2">
       <div class="text-lg">La foto se tomó el</div>
-      <div class="text-xl">{{ currentImage.date }}</div>
+      <div class="text-xl">{{ currentImage.date | date }}</div>
     </div>
     <div class="bg-black text-white text-2xl w-fit px-1 py-2">
       Total: {{ totalPoints }}
